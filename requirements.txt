@@ -4,3 +4,6 @@ Flask-MySQLdb
 jira
 mysqlclient
 mysql-connector
+Werkzeug==2.3.7
+python-dotenv==1.0.0
+
