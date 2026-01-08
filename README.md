@@ -144,22 +144,10 @@ POST /create_account
 
 # User Logout
 GET /logout
-🔧 Environment Variables
-Variable	Description	Example
-SECRET_KEY	Flask secret key	your-secret-key
-MYSQL_HOST	MySQL host	localhost
-MYSQL_USER	MySQL username	root
-MYSQL_PASSWORD	MySQL password	password
-MYSQL_DB	Database name	jira_portal
-JIRA_URL	JIRA instance URL	https://your.atlassian.net
-JIRA_USER	JIRA email	user@domain.com
-JIRA_API_TOKEN	JIRA API token	your-api-token
+
 
 🤝 Contributing
-Fork the repository
-Create a feature branch (git checkout -b feature/AmazingFeature)
-Commit changes (git commit -m 'Add AmazingFeature')
-Push to branch (git push origin feature/AmazingFeature)
+Create a feature branch (git checkout -b feature/AmazingFeature) - Commit changes (git commit -m 'Add AmazingFeature') -Push to branch (git push origin feature/AmazingFeature)
 
 Open a Pull Request
 
@@ -167,14 +155,8 @@ Open a Pull Request
 Please use GitHub Issues to report bugs.
 
 👨‍💻 Author
-Saad Khan - Devops Engineer
-GitHub: @saadcnx
-LinkedIn: Saad Khan
-Email: saadcnx@gmail.com
+Saad Khan : Devops Engineer - GitHub: @saadcnx - LinkedIn: Saad Khan - Email: saadcnx@gmail.com
 
 🙏 Acknowledgments
-Flask Documentation Team
-Atlassian for JIRA API
-Font Awesome for icons
-Google Fonts for typography
+Flask Documentation : Atlassian for JIRA API - Font Awesome for icons - Google Fonts for typography
 
