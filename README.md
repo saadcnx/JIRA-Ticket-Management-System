@@ -1,3 +1,10 @@
+# 🎫 JIRA Ticket Management System
+
+**A Flask-based web application that seamlessly integrates with Atlassian JIRA for streamlined ticket creation and management.**
+
+## 🚀 Overview
+This full-stack web application bridges the gap between users and JIRA by providing an intuitive interface to create, track, and manage JIRA tickets directly from a web portal. It eliminates the need for direct JIRA access while maintaining full compatibility with JIRA workflows.
+
 
 ## 📋 Table of Contents
 - [✨ Features](#-features)
@@ -65,12 +72,12 @@
 
 ### One-Line Installation
 
-git clone https://github.com/saadcnx/JIRA-Ticket-Management-System
+git clone https://github.com/saadcnx/Flask-jira-api-project
 
 
 🔧 Installation
 Step 1: Clone Repository
-git clone https://github.com/saadcnx/JIRA-Ticket-Management-System
+git clone https://github.com/saadcnx/Flask-jira-api-project
 cd jira-ticket-system
 
 Step 2: Setup Virtual Environment
