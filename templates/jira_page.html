@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create JIRA Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
+
+        .submit-btn {
+            background-color: #0052cc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0041a8;
+        }
+
+        .field-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .flash-message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create JIRA Ticket</h1>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/jira_create">
+            <!-- Reporter Name -->
+            <div class="form-group">
+                <label for="reporter" class="required">Reporter Name</label>
+                <input type="text" id="reporter" name="reporter"
+                       placeholder="Enter your name" required>
+                <div class="field-info">Who is creating this ticket?</div>
+            </div>
+
+            <!-- Project -->
+            <div class="form-group">
+                <label for="project" class="required">Project</label>
+                <select id="project" name="project" required>
+                    <option value="" disabled selected>Select project</option>
+                    <option value="SCRUM">SCRUM - Front-End Dev</option>
+                </select>
+                <div class="field-info">Your JIRA project</div>
+            </div>
+
+            <!-- Issue Type -->
+            <div class="form-group">
+                <label for="issueType" class="required">Issue Type</label>
+                <select id="issueType" name="issueType" required>
+                    <option value="" disabled selected>Select issue type</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Task">Task</option>
+                    <option value="Story">Story</option>
+                    <option value="Request">Request</option>
+                </select>
+                <div class="field-info">Choose issue type</div>
+            </div>
+
+            <!-- Priority -->
+            <div class="form-group">
+                <label for="priority" class="required">Priority</label>
+                <select id="priority" name="priority" required>
+                    <option value="" disabled selected>Select priority</option>
+                    <option value="Lowest">Lowest</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Highest">Highest</option>
+                </select>
+                <div class="field-info">Choose priority level</div>
+            </div>
+
+            <!-- Summary -->
+            <div class="form-group">
+                <label for="summary" class="required">Summary</label>
+                <input type="text" id="summary" name="summary"
+                       placeholder="Brief summary of the issue"
+                       maxlength="150" required>
+                <div class="field-info">Short description (max 150 characters)</div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description" class="required">Description</label>
+                <textarea id="description" name="description"
+                          placeholder="Detailed description of the issue..."
+                          required></textarea>
+                <div class="field-info">Provide all necessary details</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">
+                Create JIRA Ticket
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Simple validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let isValid = true;
+            const requiredFields = document.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = 'red';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('Please fill all required fields!');
+            }
+        });
+    </script>
+</body>
+</html>
