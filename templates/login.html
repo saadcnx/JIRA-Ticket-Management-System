@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 50px 40px;
+        }
+
+        .welcome-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .features {
+            margin-top: 40px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .feature i {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .login-form h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .login-form h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6a11cb;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-with-icon input:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-btn i {
+            margin-left: 10px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(to right, #5a0db5, #1c68f0);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+
+        .signup-link a {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .flask-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border: 1px solid #f5c6cb;
+            display: flex;
+            align-items: center;
+        }
+
+        .flask-error i {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .flask-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border: 1px solid #c3e6cb;
+            display: flex;
+            align-items: center;
+        }
+
+        .flask-success i {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+
+            .left-section {
+                padding: 30px 25px;
+            }
+
+            .right-section {
+                padding: 30px 25px;
+            }
+
+            .welcome-text h1 {
+                font-size: 2rem;
+            }
+
+            .login-form h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .remember-forgot {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .forgot-password {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="welcome-text">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account to access JIRA Ticket Creator</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="feature-text">
+                        <h3>Secure Login</h3>
+                        <p>Your data is protected with industry-leading security.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-ticket-alt"></i>
+                    <div class="feature-text">
+                        <h3>JIRA Integration</h3>
+                        <p>Create and manage JIRA tickets directly from this portal.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <div class="feature-text">
+                        <h3>24/7 Support</h3>
+                        <p>Our team is always ready to assist you with any issues.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <form class="login-form" method="POST" action="/login" id="loginForm">
+                <h2>Login Account</h2>
+
+                <!-- Flask Error Messages -->
+                {% if msg %}
+                <div class="flask-error">
+                    <i class="fas fa-exclamation-circle"></i> {{ msg }}
+                </div>
+                {% endif %}
+
+                <!-- Success message (if any) -->
+                {% if success %}
+                <div class="flask-success">
+                    <i class="fas fa-check-circle"></i> {{ success }}
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="error-message" id="usernameError">Please enter your username</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="error-message" id="passwordError">Please enter your password</div>
+                </div>
+
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span>Login</span>
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+
+                <div class="signup-link">
+                    Don't have an account? <a href="{{ url_for('create_account_page') }}">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // Basic client-side validation
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Get error elements
+            const usernameError = document.getElementById('usernameError');
+            const passwordError = document.getElementById('passwordError');
+
+            // Reset errors
+            usernameError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            let isValid = true;
+
+            // Validate username
+            if (!username) {
+                usernameError.textContent = 'Username is required';
+                usernameError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate password
+            if (!password) {
+                passwordError.textContent = 'Password is required';
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                return false;
+            }
+
+            // If valid, show loading state
+            const loginBtn = this.querySelector('.login-btn');
+            const originalText = loginBtn.innerHTML;
+
+            loginBtn.innerHTML = '<span>Logging in...</span><i class="fas fa-spinner fa-spin"></i>';
+            loginBtn.disabled = true;
+
+            // Form will submit normally to Flask
+            return true;
+        });
+
+        // Add visual feedback on input focus
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.borderColor = '#6a11cb';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.style.borderColor = '';
+            });
+        });
+    </script>
+</body>
+</html>
